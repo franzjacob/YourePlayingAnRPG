@@ -225,19 +225,6 @@ public class Story {
 		}
 	}
 	
-	
-	/*
-	public void east() {
-		player.currentWeapon = new LongSword();
-		ui.weaponLabelName.setText(player.currentWeapon.name);
-		ui.mainTextArea.setText("HI DOES THIS WORK");
-		player.hp = 5;
-		ui.hpLabelNumber.setText(Integer.toString(player.hp));
-		setChoiceText(">");
-		setNextPosition("crossRoad");
-	}
-	*/
-	
 	public void west() {
 		int r = new Random().nextInt(101);
 		if (r < 90 && !silverRing) {
