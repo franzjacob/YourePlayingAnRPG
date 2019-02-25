@@ -9,10 +9,10 @@ public class LongSword extends SuperWeapon {
 	private int maxDamage;
 	
 	public LongSword() {
-		name = "Knife";
-		damage = r.nextInt((maxDamage - minDamage) + 1) + minDamage;
+		super("LongSword", 10);
 	}
 	
+	/*
 	public int getMinDmg() {
 		return minDamage;
 	}
@@ -28,4 +28,5 @@ public class LongSword extends SuperWeapon {
 	public void setMaxDmg(int max) {
 		this.maxDamage = max;
 	}
+	*/
 }

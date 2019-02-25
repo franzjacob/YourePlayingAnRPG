@@ -9,12 +9,14 @@ public class Knife extends SuperWeapon {
 	private int maxDamage;
 	
 	public Knife() {
+		/*
 		this.setMinDmg(1);
 		this.setMaxDmg(4);
-		name = "Knife";
-		damage = 4;
+		*/
+		super("Knife", 4);
 	}
 	
+	/*
 	public int getMinDmg() {
 		return minDamage;
 	}
@@ -34,6 +36,7 @@ public class Knife extends SuperWeapon {
 	public int stab() {
 		return r.nextInt((maxDamage - minDamage) + 1) + minDamage;
 	}
+	*/
 	
 	
 }
