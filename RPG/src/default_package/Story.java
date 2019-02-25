@@ -279,7 +279,7 @@ public class Story {
 		
 	}
 	
-public void playerAttack() {
+	public void playerAttack() {
 		
 		int playerDamage = player.currentWeapon.basicAttack();
 		monster.hp -= playerDamage;
@@ -296,28 +296,6 @@ public void playerAttack() {
 		}
 	}
 	
-	/*
-	public void playerAttack() {
-		
-		Random r = new Random();
-		int max = player.currentWeapon.damage;
-		int min = player.currentWeapon.damage / 2;
-		int playerDamage = r.nextInt((max - min) + 1) + min; // player ATTdamage is in the range of half their damage value to their total damage value
-
-		monster.hp -= playerDamage;
-		
-		ui.mainTextArea.setText("You attack the " + monster.name + " for "
-				+ playerDamage + " damage!\n\n"
-				+ monster.name + " HP: " + monster.hp);
-		
-		setChoiceText(">");
-		if (monster.hp >= 1) {
-			setNextPosition("monsterAttack");
-		} else if (monster.hp <= 0) {
-			setNextPosition("win");
-		}
-	}
-	*/
 	
 	public void monsterAttack() {
 		Random r = new Random();
