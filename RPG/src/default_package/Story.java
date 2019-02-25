@@ -36,6 +36,7 @@ public class Story {
 	int swordCounter;
 	int crowdCounter;
 	int bigGuyCounter;
+	int weaponCounter;
 	
 	public Story(Game g, UI userInterface, VisibilityManager vManager) {
 		
@@ -68,6 +69,7 @@ public class Story {
 		swordCounter = 0;
 		crowdCounter = 0;
 		bigGuyCounter = 0;
+		weaponCounter = 0;
 	}
 	
 	public void selectPosition(String nextPosition) {
@@ -206,6 +208,7 @@ public class Story {
 			ui.weaponLabelName.setText(player.currentWeapon.name);
 			ui.mainTextArea.setText(ch1Text.east[swordCounter]);
 			swordCounter++;
+			weaponCounter = 1;
 			
 			setChoiceText(">");
 			setNextPosition("crossRoad");
@@ -214,6 +217,7 @@ public class Story {
 			ui.weaponLabelName.setText(player.currentWeapon.name);
 			ui.mainTextArea.setText(ch1Text.east[swordCounter]);
 			swordCounter++;
+			weaponCounter = 2;
 			
 			setChoiceText(">");
 			setNextPosition("crossRoad");
@@ -254,8 +258,20 @@ public class Story {
 		ui.mainTextArea.setText(monster.name + " HP: " + monster.hp
 				+ "\n\nWhat do you do?");
 		
-		setChoiceText("Attack", "Run");
-		setNextPosition("playerAttack", "crossRoad");
+		switch (weaponCounter) {
+		case 0: 
+			setChoiceText("Stab", "Run");
+			setNextPosition("playerAttack", "crossRoad");
+			break;
+		case 1:
+			setChoiceText("Slash", "Run");
+			setNextPosition("playerAttack", "crossRoad");
+			break;
+		case 2:
+			setChoiceText("Smite", "Run");
+			setNextPosition("playerAttack", "crossRoad");
+			break;
+		}
 	}
 	
 	
