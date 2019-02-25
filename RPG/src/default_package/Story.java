@@ -279,6 +279,24 @@ public class Story {
 		
 	}
 	
+public void playerAttack() {
+		
+		int playerDamage = player.currentWeapon.basicAttack();
+		monster.hp -= playerDamage;
+		
+		ui.mainTextArea.setText("You attack the " + monster.name + " for "
+				+ playerDamage + " damage!\n\n"
+				+ monster.name + " HP: " + monster.hp);
+		
+		setChoiceText(">");
+		if (monster.hp >= 1) {
+			setNextPosition("monsterAttack");
+		} else if (monster.hp <= 0) {
+			setNextPosition("win");
+		}
+	}
+	
+	/*
 	public void playerAttack() {
 		
 		Random r = new Random();
@@ -299,6 +317,7 @@ public class Story {
 			setNextPosition("win");
 		}
 	}
+	*/
 	
 	public void monsterAttack() {
 		Random r = new Random();

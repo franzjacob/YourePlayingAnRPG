@@ -21,16 +21,26 @@ public class SuperWeapon {
 	
 	
 	public SuperWeapon(String name, int damage) {
+		setMin(damage);
+		setMax(damage);
 		this.name = name;
 		this.damage = damage;
 	}
 	
-	public void setMin() {
-		minDmg = (int) (damage - (damage / 1.5));
+	public void setMin(int damage) {
+		minDmg = (int) (damage - (damage / 2));
 	}
 	
-	public void setMax() {
-		maxDmg = (int) (damage - (damage / 1.5));
+	public void setMax(int damage) {
+		maxDmg = (int) (damage + (damage / 2));
+	}
+	
+	public void setMinHARD(int damage) {
+		minDmg = damage;
+	}
+	
+	public void setMaxHARD(int damage) {
+		maxDmg = damage;
 	}
 	
 	public int getMin() {
@@ -49,7 +59,7 @@ public class SuperWeapon {
 	// general-purpose attack move
 	public int basicAttack() {
 		Random r = new Random();
-		int atk = r.nextInt(maxDmg - minDmg) + minDmg;
+		int atk = r.nextInt((maxDmg - minDmg) + 1) + minDmg;
 		return atk;
 	}
 	
