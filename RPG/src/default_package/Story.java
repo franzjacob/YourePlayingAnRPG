@@ -38,6 +38,8 @@ public class Story {
 	int bigGuyCounter;
 	int weaponCounter;
 	
+	int smiteCD;
+	
 	public Story(Game g, UI userInterface, VisibilityManager vManager) {
 		
 		this.game = g;
@@ -70,6 +72,8 @@ public class Story {
 		crowdCounter = 0;
 		bigGuyCounter = 0;
 		weaponCounter = 0;
+		
+		smiteCD = 5;
 	}
 	
 	public void selectPosition(String nextPosition) {
@@ -268,8 +272,11 @@ public class Story {
 			setNextPosition("playerAttack", "crossRoad");
 			break;
 		case 2:
-			setChoiceText("Smite", "Run");
-			setNextPosition("playerAttack", "crossRoad");
+			setChoiceText("Cleave", "Smite", "Run");
+			setNextPosition("playerAttack", "playerAttack", "crossRoad");
+			if (smiteCD > 0) {
+				ui.choice2.setEnabled(false);
+			}
 			break;
 		}
 	}
@@ -298,6 +305,10 @@ public class Story {
 	public void playerAttack() {
 		
 		int playerDamage = player.currentWeapon.basicAttack();
+		if (smiteCD == 0 && player.currentWeapon.name == "LGMI") {
+			playerDamage = player.currentWeapon.smite();
+			smiteCD = 5;
+		}
 		monster.hp -= playerDamage;
 		
 		ui.mainTextArea.setText("You attack the " + monster.name + " for "

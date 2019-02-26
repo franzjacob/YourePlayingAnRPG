@@ -63,4 +63,8 @@ public class SuperWeapon {
 		return atk;
 	}
 	
+	public int smite() {
+		return 1000;
+	}
+	
 }
