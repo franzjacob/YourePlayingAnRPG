@@ -496,7 +496,35 @@ public class Story {
 		game.nextPosition4 = d;
 	}
 	
-	
-	
+	private void greyout3() {
+		ui.choice2.setEnabled(false);
+		ui.choice3.setEnabled(false);
+		ui.choice4.setEnabled(false);
+	}
 
+	private void greyout2() {
+		ui.choice3.setEnabled(false);
+		ui.choice4.setEnabled(false);
+	}
+	
+	private void greyout1() {
+		ui.choice4.setEnabled(false);
+	}
+	
+	private void enable3() {
+		ui.choice2.setEnabled(true);
+		ui.choice3.setEnabled(true);
+		ui.choice4.setEnabled(true);
+	}
+	
+	private void enable2() {
+		ui.choice3.setEnabled(true);
+		ui.choice4.setEnabled(true);
+	}
+	
+	private void enable1() {
+		ui.choice4.setEnabled(true);
+	}
+
+	
 }
