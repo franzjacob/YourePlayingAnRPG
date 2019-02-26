@@ -33,6 +33,7 @@ public class Story {
 	boolean hitGuard;
 	boolean seenCrossRoad;
 	int talkedToGuardCounter;
+	int attackedGuardCounter;
 	int townGateCounter;
 	int swordCounter;
 	int crowdCounter;
@@ -69,6 +70,7 @@ public class Story {
 		seenCrossRoad = false;
 		
 		talkedToGuardCounter = 0;
+		attackedGuardCounter = 0;
 		townGateCounter = 0;
 		swordCounter = 0;
 		crowdCounter = 0;
@@ -159,17 +161,16 @@ public class Story {
 	}
 	
 	public void attackGuard() {
-		if (talkedToGuardCounter == 7) {
+		if (talkedToGuardCounter == 7 || attackedGuardCounter == 7) {
 			player.hp = 0;
 			ui.hpLabelNumber.setText(Integer.toString(player.hp));
-			ui.mainTextArea.setText("The guard straight up killed you, you annoying,"
-					+ "\npersistent, asshat."
-					+ "\nYou're, like, mega dead.");
+			ui.mainTextArea.setText(ch1Text.guardKOS[0]);
 			helper.setChoiceText("Return to Title");
 			helper.setNextPosition("returnTitle");
 			
 		} else {
 			Random r = new Random();
+			attackedGuardCounter++;
 			player.hp -= 3;
 			hitGuard = true;
 			ui.hpLabelNumber.setText(Integer.toString(player.hp));

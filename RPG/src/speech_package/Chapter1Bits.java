@@ -1,8 +1,10 @@
 package speech_package;
 
+// things the narrator will say
 public class Chapter1Bits{
 
 	public String[] east;
+	public String[] guardKOS;
 	
 	public Chapter1Bits() {
 		east = new String[] {
@@ -26,6 +28,12 @@ public class Chapter1Bits{
 				+ "\n...don't you dare say you told me so.",
 				"(You get the strange sensation you really"
 				+ "\nhave found everything of value here)"
+		};
+		
+		guardKOS = new String[] {
+				"The guard straight up killed you, you annoying,"
+				+ "\npersistent, asshat."
+				+ "\nYou're, like, mega dead."
 		};
 	}
 }
