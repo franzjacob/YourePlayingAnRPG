@@ -196,6 +196,8 @@ public class Story {
 	}
 	
 	public void crossRoad() {
+		ui.choice2.setEnabled(true); // b/c playerAttack() is one of next possible calls after smite button being possibly disabled
+		
 		seenCrossRoad = true;
 		ui.mainTextArea.setText("You are at a crossroad. Taking the southern"
 				+ "\nroute will return you to the town."
@@ -319,6 +321,7 @@ public class Story {
 	}
 	
 	public void playerAttack() {
+		ui.choice2.setEnabled(true); // b/c playerAttack() is one of next possible calls after smite button being possibly disabled
 		
 		smiteCD--;
 		int playerDamage = player.currentWeapon.basicAttack();
