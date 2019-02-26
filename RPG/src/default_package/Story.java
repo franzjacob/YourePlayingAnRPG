@@ -219,6 +219,8 @@ public class Story {
 			player.currentWeapon = new LongSword();
 			ui.weaponLabelName.setText(player.currentWeapon.name);
 			ui.mainTextArea.setText(ch1Text.east[swordCounter]);
+			tooltips.setWeaponLabelNameTTT();
+			tooltips.setWeaponLabelTTT();
 			swordCounter++;
 			weaponCounter = 1;
 			
@@ -228,6 +230,8 @@ public class Story {
 			player.currentWeapon = new LegendaryCleaver();
 			ui.weaponLabelName.setText(player.currentWeapon.name);
 			ui.mainTextArea.setText(ch1Text.east[swordCounter]);
+			tooltips.setWeaponLabelNameTTT();
+			tooltips.setWeaponLabelTTT();
 			swordCounter++;
 			weaponCounter = 2;
 			
