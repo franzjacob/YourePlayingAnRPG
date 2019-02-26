@@ -7,6 +7,7 @@ import monster_package.Goblin;
 import monster_package.Elder;
 import monster_package.SuperMonster;
 import speech_package.Chapter1Bits;
+import speech_package.Chapter2Bits;
 import speech_package.TownGate;
 import speech_package.TownGuard1;
 import weapon_package.Knife;
@@ -27,6 +28,7 @@ public class Story {
 	TownGuard1 townGuard;
 	TownGate townGate;
 	Chapter1Bits ch1Text;
+	Chapter2Bits ch2Text;
 	
 	// triggers for story/text events
 	boolean silverRing;
@@ -63,6 +65,7 @@ public class Story {
 		townGuard = new TownGuard1();
 		townGate = new TownGate();
 		ch1Text = new Chapter1Bits();
+		ch2Text = new Chapter2Bits();
 		
 		silverRing = false;
 		talkedToGuard = false;
@@ -397,7 +400,7 @@ public class Story {
 	
 	
 	/*
-	 *  Start of Chapter 2 code 
+	 *  Start of Chapter 2 (lol that was short) code 
 	 *  
 	 *  
 	 *  
@@ -406,10 +409,8 @@ public class Story {
 	 */
 	
 	public void enterTown() {
-		ui.mainTextArea.setText("You enter the town and you instantly regret the"
-				+ "\ndecision. The place is littered with rubbage and"
-				+ "\nsewage. The people look as horrid as they smell."
-				+ "\nA crowd gathers.");
+		ui.mainTextArea.setText(ch2Text.enteringTown[ch2Text.enterTownCounter]);
+		ch2Text.enterTownCounter++;
 		
 		helper.setChoiceText(">");
 		helper.setNextPosition("crowdGathers");
@@ -417,31 +418,24 @@ public class Story {
 	
 	public void crowdGathers() {
 		if (crowdCounter == 0) {
-			ui.mainTextArea.setText("\"Anotha' fookin' outsider, eh? Well, if ya really" 
-					+ "\nreally wans in to er lovely lil' place ere', youse"
-					+ "\ngonna 'ave to prove you can hang with us!\""
-					+ "\n(The crowd cheers)");
+			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
+			ch2Text.crowdGatherCounter++;
 			
 			helper.setChoiceText(">");
 			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
 			
 		} else if (crowdCounter == 1) {
-			ui.mainTextArea.setText("\"Yuh may have gottin past our fookin' guard" 
-					+ "\nsomeone in the crowd yells 'Fuck you, Gary!'), "
-					+ "\nbut yull 'ave to get passed us if ya wanna stay."
-					+ "\nWe'll let ya pick who gets to beat ya, tho.\"");
+			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
+			ch2Text.crowdGatherCounter++;
 			
 			helper.setChoiceText(">");
 			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
 			
 		} else {
-			ui.mainTextArea.setText("The brute before you waves his hand and the"
-					+ "\ncrowd parts. Three people step forth from the"
-					+ "\nmass of people: a hunched, shrouded figure; "
-					+ "\na drunken oaf; and a small child. "
-					+ "\n\"So who's it gonna be?\"");
+			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
+			ch2Text.crowdGatherCounter++;
 			
 			helper.setChoiceText("Hunchback", "Big Oaf", "Kindergarten-er");
 			helper.setNextPosition("bigGuy", "bigGuy", "bigGuy");	
@@ -450,18 +444,16 @@ public class Story {
 	
 	public void bigGuy() {
 		if (bigGuyCounter == 0) {
-			ui.mainTextArea.setText("*THUD THUD THUD*"
-					+ "\nThe crowd falls silent and you witness a panic"
-					+ "\nset in on their pale faces Another figure enters"
-					+ "\nthe scene, but it towers over the rest.");
+			ui.mainTextArea.setText(ch2Text.bigGuy[ch2Text.bigGuyCounter]);
+			ch2Text.bigGuyCounter++;
 			
 			helper.setChoiceText(">");
 			helper.setNextPosition("bigGuy");
 			bigGuyCounter++;
 			
 		} else if (bigGuyCounter == 1) {
-			ui.mainTextArea.setText("\"This isn't some game. There will be no"
-					+ "\nchoosing today. It's my turn to fight.\"");
+			ui.mainTextArea.setText(ch2Text.bigGuy[ch2Text.bigGuyCounter]);
+			ch2Text.bigGuyCounter++;
 			
 			monster = new Elder();
 			
