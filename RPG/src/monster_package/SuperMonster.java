@@ -1,5 +1,7 @@
 package monster_package;
 
+import java.util.Random;
+
 public class SuperMonster {
 
 	public String name;
@@ -35,5 +37,11 @@ public class SuperMonster {
 		this.deathMessage = deathMessage;
 		this.surrenderMessage = surrenderMessage;
 		this.loseNum = loseNum;
+	}
+	
+	public int basicAttack() {
+		Random r = new Random();
+		int atk = r.nextInt((maxDmg - minDmg) + 1) + minDmg;
+		return atk;
 	}
 }

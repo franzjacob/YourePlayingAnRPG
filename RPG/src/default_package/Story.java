@@ -325,10 +325,7 @@ public class Story {
 	
 	
 	public void monsterAttack() {
-		Random r = new Random();
-		int max = monster.maxDmg;
-		int min = monster.maxDmg / 2;
-		int monsterDamage = r.nextInt((max - min) - 1) + min;
+		int monsterDamage = monster.basicAttack();
 		player.hp -= monsterDamage;
 		
 		ui.hpLabelNumber.setText(Integer.toString(player.hp));
