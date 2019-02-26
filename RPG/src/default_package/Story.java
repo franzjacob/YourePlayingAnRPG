@@ -21,6 +21,7 @@ public class Story {
 	Player player;
 	SuperMonster monster;
 	Helper helper;
+	Tooltips tooltips;
 	
 	// contextual text/monologues
 	TownGuard1 townGuard;
@@ -58,7 +59,6 @@ public class Story {
 		
 		player.currentWeapon = new Knife();
 		ui.weaponLabelName.setText(player.currentWeapon.name);
-		//ui.weaponLabel.setToolTipText();
 		
 		townGuard = new TownGuard1();
 		townGate = new TownGate();
@@ -78,6 +78,9 @@ public class Story {
 		weaponCounter = 0;
 		
 		smiteCD = 5;
+		
+		this.tooltips = new Tooltips(this.ui, this.game, this.player, this.monster);
+		tooltips.setWeaponLabelNameTTT();
 	}
 	
 	public void selectPosition(String nextPosition) {

@@ -46,7 +46,7 @@ public class SuperWeapon {
 	public int getMin() {
 		return minDmg;
 	}
-	
+
 	public int getMax() {
 		return maxDmg;
 	}
