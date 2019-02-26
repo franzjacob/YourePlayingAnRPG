@@ -2,13 +2,12 @@ package monster_package;
 
 public class Goblin extends SuperMonster{
 
+	private static String deathMsg = "You've been totally fucking owned by a"
+			+ "\nsmall-ass, punk-faced, lvl 1 Goblin."
+			+ "\n\nReturn to title screen, ya fucking nimwit."; 
+
+	
 	public Goblin() {
-		name = "Goblin";
-		hp = 20;
-		attack = 6;
-		deathMessage = "You've been totally fucking owned by a"
-				+ "\nsmall-ass, punk-faced, lvl 1 Goblin."
-				+ "\n\nReturn to title screen, ya fucking nimwit."; 
-		loseNum = 0;
+		super("Goblin", 20, 7, 10, deathMsg);
 	}
 }

@@ -326,8 +326,8 @@ public class Story {
 	
 	public void monsterAttack() {
 		Random r = new Random();
-		int max = monster.attack;
-		int min = monster.attack / 2;
+		int max = monster.maxDmg;
+		int min = monster.maxDmg / 2;
 		int monsterDamage = r.nextInt((max - min) - 1) + min;
 		player.hp -= monsterDamage;
 		
