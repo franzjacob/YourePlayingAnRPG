@@ -257,19 +257,19 @@ public class Story {
 			
 			helper.setChoiceText("Fight", "Run");
 			helper.setNextPosition("fight", "crossRoad");
-		} else if (r > 90 && silverRing) {
+		} else if (r < 90 && silverRing) {
+			ui.mainTextArea.setText(ch1Text.west[0]);
+			
+			helper.setChoiceText(">");
+			helper.setNextPosition("crossRoad");
+		} else {
 			monster = new DeathWizard();
 			
-			ui.mainTextArea.setText("Despite being daytime, darkness eminates from"
-					+ "\na person in front of you. They're not friendly."
+			ui.mainTextArea.setText(ch1Text.west[1]
 					+ "\nYou encounter a " + monster.name + "!");
 			
 			helper.setChoiceText("Fight", "Run");
 			helper.setNextPosition("fight", "crossRoad");
-		} else {
-			ui.mainTextArea.setText("All that remains is the corpse of the slain"
-					+ "\ngoblin. Its peaceful existence has come to a"
-					+ "\npremature end, thanks to you.");
 		}
 	}
 	

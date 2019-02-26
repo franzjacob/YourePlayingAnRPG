@@ -5,6 +5,7 @@ public class Chapter1Bits{
 
 	public String[] east;
 	public String[] guardKOS;
+	public String[] west;
 	
 	public Chapter1Bits() {
 		east = new String[] {
@@ -29,11 +30,17 @@ public class Chapter1Bits{
 				"(You get the strange sensation you really"
 				+ "\nhave found everything of value here)"
 		};
-		
 		guardKOS = new String[] {
 				"The guard straight up killed you, you annoying,"
 				+ "\npersistent, asshat."
 				+ "\nYou're, like, mega dead."
+		};
+		west = new String[] {
+				"All that remains is the corpse of the slain"
+						+ "\ngoblin. Its peaceful existence has come to a"
+						+ "\npremature end, thanks to you.",
+				"Despite being daytime, darkness eminates from"
+						+ "\na person in front of you. They're not friendly."
 		};
 	}
 }
