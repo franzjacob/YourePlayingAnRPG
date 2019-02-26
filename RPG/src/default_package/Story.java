@@ -81,6 +81,8 @@ public class Story {
 		
 		this.tooltips = new Tooltips(this.ui, this.game, this.player, this.monster);
 		tooltips.setWeaponLabelNameTTT();
+		tooltips.setWeaponLabelTTT();
+		tooltips.setHealthTTT();
 	}
 	
 	public void selectPosition(String nextPosition) {
@@ -280,6 +282,7 @@ public class Story {
 		case 2:
 			helper.setChoiceText("Cleave", "Smite", "Run");
 			helper.setNextPosition("playerAttack", "playerAttack", "crossRoad");
+			tooltips.showSkillCD(ui.choice2, smiteCD);
 			if (smiteCD > 0) {
 				ui.choice2.setEnabled(false);
 			}
@@ -310,6 +313,7 @@ public class Story {
 	
 	public void playerAttack() {
 		
+		smiteCD--;
 		int playerDamage = player.currentWeapon.basicAttack();
 		if (smiteCD == 0 && player.currentWeapon.name == "LGMI") {
 			playerDamage = player.currentWeapon.smite();
