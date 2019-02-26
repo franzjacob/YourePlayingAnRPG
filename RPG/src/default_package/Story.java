@@ -20,6 +20,7 @@ public class Story {
 	VisibilityManager vm;
 	Player player;
 	SuperMonster monster;
+	Helper helper;
 	
 	// contextual text/monologues
 	TownGuard1 townGuard;
@@ -45,6 +46,7 @@ public class Story {
 		this.game = g;
 		this.ui = userInterface;
 		this.vm = vManager;
+		this.helper = new Helper(userInterface, g);
 	}
 	
 	// sets values for start of game
@@ -112,17 +114,17 @@ public class Story {
 		}
 		
 		if (talkedToGuardCounter >= 7) {
-			setChoiceText("PESTER!", "Attack the Guard", "Leave");
+			helper.setChoiceText("PESTER!", "Attack the Guard", "Leave");
 		} else if (talkedToGuardCounter > 3) {
-			setChoiceText("Pester Guard", "Attack the Guard", "Leave");
+			helper.setChoiceText("Pester Guard", "Attack the Guard", "Leave");
 		} else if (talkedToGuardCounter > 0) {
-			setChoiceText("Ask Guard Again", "Attack the Guard", "Leave");
+			helper.setChoiceText("Ask Guard Again", "Attack the Guard", "Leave");
 		} else {
-			setChoiceText("Ask Guard", "Attack the Guard", "Leave");
+			helper.setChoiceText("Ask Guard", "Attack the Guard", "Leave");
 		}
 		
 		townGateCounter++;
-		setNextPosition("talkGuard", "attackGuard", "crossRoad");
+		helper.setNextPosition("talkGuard", "attackGuard", "crossRoad");
 	}
 	
 	public void talkGuard() {
@@ -131,24 +133,24 @@ public class Story {
 		if (!silverRing) {
 			if (talkedToGuardCounter == 7) {
 				ui.mainTextArea.setText(townGuard.last_straw[r.nextInt(3)]);
-				setChoiceText(">");
-				setNextPosition("attackGuard");
+				helper.setChoiceText(">");
+				helper.setNextPosition("attackGuard");
 			} else if (talkedToGuardCounter < 7 && talkedToGuardCounter > 3) {
 				ui.mainTextArea.setText(townGuard.extra_monologues[r.nextInt(4)]);
 				talkedToGuardCounter++;
-				setChoiceText(">");
-				setNextPosition("townGate");
+				helper.setChoiceText(">");
+				helper.setNextPosition("townGate");
 			} else if (talkedToGuardCounter < 4 && talkedToGuardCounter > 0) {
 				ui.mainTextArea.setText(townGuard.nonviolent_monologues[r.nextInt(6)]);
 				talkedToGuardCounter++;
-				setChoiceText(">");
-				setNextPosition("townGate");
+				helper.setChoiceText(">");
+				helper.setNextPosition("townGate");
 			} else {
 				ui.mainTextArea.setText("\"You are an outsider. I do not know you."
 						+ "\nBegone, miscreant.\"");
 				talkedToGuardCounter++;
-				setChoiceText(">");
-				setNextPosition("townGate");
+				helper.setChoiceText(">");
+				helper.setNextPosition("townGate");
 			}
 			
 		} else {
@@ -163,8 +165,8 @@ public class Story {
 			ui.mainTextArea.setText("The guard straight up killed you, you annoying,"
 					+ "\npersistent, asshat."
 					+ "\nYou're, like, mega dead.");
-			setChoiceText("Return to Title");
-			setNextPosition("returnTitle");
+			helper.setChoiceText("Return to Title");
+			helper.setNextPosition("returnTitle");
 			
 		} else {
 			Random r = new Random();
@@ -175,11 +177,11 @@ public class Story {
 					+ "\n(Guard backhands you. Take 3 damage)");
 			
 			if (player.hp > 0) {
-				setChoiceText(">");
-				setNextPosition("townGate");
+				helper.setChoiceText(">");
+				helper.setNextPosition("townGate");
 			} else {
-				setChoiceText("You Died");
-				setNextPosition("returnTitle");
+				helper.setChoiceText("You Died");
+				helper.setNextPosition("returnTitle");
 			}
 		}
 	}
@@ -190,8 +192,8 @@ public class Story {
 				+ "\nroute will return you to the town."
 				+ "\n\nWhat do you do?");
 		
-		setChoiceText("Go North", "Go East", "Go South", "Go West");
-		setNextPosition("north", "east", "townGate", "west");
+		helper.setChoiceText("Go North", "Go East", "Go South", "Go West");
+		helper.setNextPosition("north", "east", "townGate", "west");
 	}
 	
 	public void north() {
@@ -200,8 +202,8 @@ public class Story {
 		ui.mainTextArea.setText("You find a pond and drink from its cool water."
 				+ "\n\n(Not the most sanitary thing, but eh. Gain 3 \nhealth.)");
 		
-		setChoiceText(">");
-		setNextPosition("crossRoad");
+		helper.setChoiceText(">");
+		helper.setNextPosition("crossRoad");
 	}
 	
 	
@@ -214,8 +216,8 @@ public class Story {
 			swordCounter++;
 			weaponCounter = 1;
 			
-			setChoiceText(">");
-			setNextPosition("crossRoad");
+			helper.setChoiceText(">");
+			helper.setNextPosition("crossRoad");
 		} else if (swordCounter == 5){
 			player.currentWeapon = new LegendaryCleaver();
 			ui.weaponLabelName.setText(player.currentWeapon.name);
@@ -223,13 +225,13 @@ public class Story {
 			swordCounter++;
 			weaponCounter = 2;
 			
-			setChoiceText(">");
-			setNextPosition("crossRoad");
+			helper.setChoiceText(">");
+			helper.setNextPosition("crossRoad");
 		} else {
 			ui.mainTextArea.setText(ch1Text.east[ch1Text.east.length - 1]);
 			
-			setChoiceText(">");
-			setNextPosition("crossRoad");
+			helper.setChoiceText(">");
+			helper.setNextPosition("crossRoad");
 		}
 	}
 	
@@ -240,8 +242,8 @@ public class Story {
 			
 			ui.mainTextArea.setText("You encounter a " + monster.name + "!");
 			
-			setChoiceText("Fight", "Run");
-			setNextPosition("fight", "crossRoad");
+			helper.setChoiceText("Fight", "Run");
+			helper.setNextPosition("fight", "crossRoad");
 		} else if (r > 90 && silverRing) {
 			monster = new DeathWizard();
 			
@@ -249,8 +251,8 @@ public class Story {
 					+ "\na person in front of you. They're not friendly."
 					+ "\nYou encounter a " + monster.name + "!");
 			
-			setChoiceText("Fight", "Run");
-			setNextPosition("fight", "crossRoad");
+			helper.setChoiceText("Fight", "Run");
+			helper.setNextPosition("fight", "crossRoad");
 		} else {
 			ui.mainTextArea.setText("All that remains is the corpse of the slain"
 					+ "\ngoblin. Its peaceful existence has come to a"
@@ -264,16 +266,16 @@ public class Story {
 		
 		switch (weaponCounter) {
 		case 0: 
-			setChoiceText("Stab", "Run");
-			setNextPosition("playerAttack", "crossRoad");
+			helper.setChoiceText("Stab", "Run");
+			helper.setNextPosition("playerAttack", "crossRoad");
 			break;
 		case 1:
-			setChoiceText("Slash", "Run");
-			setNextPosition("playerAttack", "crossRoad");
+			helper.setChoiceText("Slash", "Run");
+			helper.setNextPosition("playerAttack", "crossRoad");
 			break;
 		case 2:
-			setChoiceText("Cleave", "Smite", "Run");
-			setNextPosition("playerAttack", "playerAttack", "crossRoad");
+			helper.setChoiceText("Cleave", "Smite", "Run");
+			helper.setNextPosition("playerAttack", "playerAttack", "crossRoad");
 			if (smiteCD > 0) {
 				ui.choice2.setEnabled(false);
 			}
@@ -315,11 +317,11 @@ public class Story {
 				+ playerDamage + " damage!\n\n"
 				+ monster.name + " HP: " + monster.hp);
 		
-		setChoiceText(">");
+		helper.setChoiceText(">");
 		if (monster.hp >= 1) {
-			setNextPosition("monsterAttack");
+			helper.setNextPosition("monsterAttack");
 		} else if (monster.hp <= 0) {
-			setNextPosition("win");
+			helper.setNextPosition("win");
 		}
 	}
 	
@@ -333,11 +335,11 @@ public class Story {
 				+ monster.name + " HP: " + monster.hp);
 		
 		if (player.hp >= 1) {
-			setChoiceText("Attack", "Run");
-			setNextPosition("playerAttack", "crossRoad");
+			helper.setChoiceText("Attack", "Run");
+			helper.setNextPosition("playerAttack", "crossRoad");
 		} else if (player.hp <= 0) {
-			setChoiceText("Die");
-			setNextPosition("lose");
+			helper.setChoiceText("Die");
+			helper.setNextPosition("lose");
 		}
 	}
 	
@@ -347,8 +349,8 @@ public class Story {
 				+ "\n\n(You obtained Silver Ring, you scummy, \ngrave-robbing bastard.)");
 		monster = null;
 		
-		setChoiceText("Go East");
-		setNextPosition("crossRoad");
+		helper.setChoiceText("Go East");
+		helper.setNextPosition("crossRoad");
 	}
 	
 	public void lose() {
@@ -361,8 +363,8 @@ public class Story {
 			ui.mainTextArea.setText(monster.surrenderMessage);
 		}
 		
-		setChoiceText("Title Screen");
-		setNextPosition("returnTitle");
+		helper.setChoiceText("Title Screen");
+		helper.setNextPosition("returnTitle");
 	}
 	
 	public void returnTitle() {
@@ -377,8 +379,8 @@ public class Story {
 				+ "\nthat pesters the town folk about littering. "
 				+ "\nWelcome, fellow nature hater!");
 		
-		setChoiceText(">");
-		setNextPosition("enterTown");
+		helper.setChoiceText(">");
+		helper.setNextPosition("enterTown");
 	}
 	
 	
@@ -397,8 +399,8 @@ public class Story {
 				+ "\nsewage. The people look as horrid as they smell."
 				+ "\nA crowd gathers.");
 		
-		setChoiceText(">");
-		setNextPosition("crowdGathers");
+		helper.setChoiceText(">");
+		helper.setNextPosition("crowdGathers");
 	}
 	
 	public void crowdGathers() {
@@ -408,8 +410,8 @@ public class Story {
 					+ "\ngonna 'ave to prove you can hang with us!\""
 					+ "\n(The crowd cheers)");
 			
-			setChoiceText(">");
-			setNextPosition("crowdGathers");
+			helper.setChoiceText(">");
+			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
 			
 		} else if (crowdCounter == 1) {
@@ -418,8 +420,8 @@ public class Story {
 					+ "\nbut yull 'ave to get passed us if ya wanna stay."
 					+ "\nWe'll let ya pick who gets to beat ya, tho.\"");
 			
-			setChoiceText(">");
-			setNextPosition("crowdGathers");
+			helper.setChoiceText(">");
+			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
 			
 		} else {
@@ -429,8 +431,8 @@ public class Story {
 					+ "\na drunken oaf; and a small child. "
 					+ "\n\"So who's it gonna be?\"");
 			
-			setChoiceText("Hunchback", "Big Oaf", "Kindergarten-er");
-			setNextPosition("bigGuy", "bigGuy", "bigGuy");	
+			helper.setChoiceText("Hunchback", "Big Oaf", "Kindergarten-er");
+			helper.setNextPosition("bigGuy", "bigGuy", "bigGuy");	
 		}
 	}
 	
@@ -441,8 +443,8 @@ public class Story {
 					+ "\nset in on their pale faces Another figure enters"
 					+ "\nthe scene, but it towers over the rest.");
 			
-			setChoiceText(">");
-			setNextPosition("bigGuy");
+			helper.setChoiceText(">");
+			helper.setNextPosition("bigGuy");
 			bigGuyCounter++;
 			
 		} else if (bigGuyCounter == 1) {
@@ -451,13 +453,14 @@ public class Story {
 			
 			monster = new Elder();
 			
-			setChoiceText("Fight!", "Surrender");
-			setNextPosition("fight2", "lose");
+			helper.setChoiceText("Fight!", "Surrender");
+			helper.setNextPosition("fight2", "lose");
 		}
 	}
 	
 	
 	// helper functions for setting choice text and variables, so I don't have to repeat so much code all the damn time
+	/*
 	private void setChoiceText(String a) {
 		setChoiceText(a, null);
 	}
@@ -525,6 +528,6 @@ public class Story {
 	private void enable1() {
 		ui.choice4.setEnabled(true);
 	}
-
+	*/
 	
 }
