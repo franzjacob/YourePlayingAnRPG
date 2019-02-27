@@ -10,6 +10,7 @@ import speech_package.Chapter1Bits;
 import speech_package.Chapter2Bits;
 import speech_package.TownGate;
 import speech_package.TownGuard1;
+import weapon_package.Fists;
 import weapon_package.Knife;
 import weapon_package.LegendaryCleaver;
 import weapon_package.LongSword;
@@ -36,6 +37,8 @@ public class Story {
 	boolean hitGuard;
 	boolean seenCrossRoad;
 	boolean apologize;
+	boolean lieThere;
+	boolean bloodrage;
 	int talkedToGuardCounter;
 	int attackedGuardCounter;
 	int townGateCounter;
@@ -73,6 +76,8 @@ public class Story {
 		hitGuard = false;
 		seenCrossRoad = false;
 		apologize = false;
+		lieThere = false;
+		bloodrage = false;
 		
 		talkedToGuardCounter = 0;
 		attackedGuardCounter = 0;
@@ -111,6 +116,8 @@ public class Story {
 		case "enterTown": enterTown(); break;
 		case "bigGuy": bigGuy(); break;
 		case "surrenderDIE": surrenderDIE(); break;
+		case "lieThere": lieThere(); break;
+		case "getReady": getReady(); break;
 		}
 	}
 	
@@ -484,8 +491,12 @@ public class Story {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
 			
-			helper.setChoiceText("Sucker Punch", "Get Ready");
-			helper.setNextPosition("bigGuy", "surrenderDIE");
+			player.currentWeapon = new Fists();
+			ui.weaponLabelName.setText(player.currentWeapon.getName());
+			tooltips.setWeaponLabelNameTTT();
+			
+			helper.setChoiceText("Sucker Punch", "Prepare");
+			helper.setNextPosition("bigGuy", "getReady");
 		} else if (bigGuyCounter == 3) {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
@@ -506,7 +517,48 @@ public class Story {
 		//						-> keep punching	
 	}
 	
-	public void KO() {
+	public void getReady() {
+		if (bloodrage) {
+			ui.mainTextArea.setText(ch2Text.getReady[1]);
+			
+			helper.setChoiceText(">");
+			helper.setNextPosition("KO");
+		} else {
+			ui.mainTextArea.setText(ch2Text.getReady[0]);
+			
+			bloodrage = true;
+			
+			helper.setChoiceText("Blood Rage", "Lie There");
+			helper.setNextPosition("bigGuy", "lieThere");
+		}
+	}
+	
+	// got lazy, made it its own method, put text in apologize b/c of laziness, too
+	public void lieThere() {
+		ui.mainTextArea.setText(ch2Text.apologize[1]);
 		
+		helper.setChoiceText("Return to Title");
+		helper.setNextPosition("returnTitle");
+	}
+	
+	public void KO() {
+		if (bloodrage) {
+			ui.mainTextArea.setText(ch2Text.KO[0]);
+			
+			helper.setChoiceText("End");
+			helper.setNextPosition("End");
+		} else {
+			ui.mainTextArea.setText(ch2Text.KO[1]);
+			
+			helper.setChoiceText("End");
+			helper.setNextPosition("End");
+		}
+	}
+	
+	public void end() {
+		ui.mainTextArea.setText(ch2Text.end);
+		
+		helper.setChoiceText("Return To Title");
+		helper.setNextPosition("returnTitle");
 	}
 }
