@@ -129,6 +129,8 @@ public class Story {
 				+ "\n\nWhat do you do?";
 		Random r = new Random();
 		
+		helper.enabler(3);
+		
 		if (!seenCrossRoad) {
 			ui.mainTextArea.setText(default_s);
 		} else {
@@ -152,6 +154,7 @@ public class Story {
 	public void talkGuard() {
 		talkedToGuard = true;
 		Random r = new Random();
+		helper.enabler(1);
 		if (!silverRing) {
 			if (talkedToGuardCounter == 7) {
 				ui.mainTextArea.setText(townGuard.last_straw[r.nextInt(3)]);
@@ -181,6 +184,7 @@ public class Story {
 	}
 	
 	public void attackGuard() {
+		helper.enabler(1);
 		if (talkedToGuardCounter == 7 || attackedGuardCounter == 7) {
 			player.hp = 0;
 			ui.hpLabelNumber.setText(Integer.toString(player.hp));
@@ -215,6 +219,7 @@ public class Story {
 				+ "\nroute will return you to the town."
 				+ "\n\nWhat do you do?");
 		
+		helper.enabler(4);
 		helper.setChoiceText("Go North", "Go East", "Go South", "Go West");
 		helper.setNextPosition("north", "east", "townGate", "west");
 	}
@@ -225,6 +230,7 @@ public class Story {
 		ui.mainTextArea.setText("You find a pond and drink from its cool water."
 				+ "\n\n(Not the most sanitary thing, but eh. Gain 3 \nhealth.)");
 		
+		helper.enabler(1);
 		helper.setChoiceText(">");
 		helper.setNextPosition("crossRoad");
 	}
@@ -232,6 +238,7 @@ public class Story {
 	
 	public void east() {
 		
+		helper.enabler(1);
 		if (swordCounter <= 4) {
 			player.currentWeapon = new LongSword();
 			ui.weaponLabelName.setText(player.currentWeapon.name);
@@ -269,11 +276,13 @@ public class Story {
 			
 			ui.mainTextArea.setText("You encounter a " + monster.name + "!");
 			
+			helper.enabler(2);
 			helper.setChoiceText("Fight", "Run");
 			helper.setNextPosition("fight", "crossRoad");
 		} else if (r < 90 && silverRing) {
 			ui.mainTextArea.setText(ch1Text.west[0]);
 			
+			helper.enabler(1);
 			helper.setChoiceText(">");
 			helper.setNextPosition("crossRoad");
 		} else {
@@ -282,6 +291,7 @@ public class Story {
 			ui.mainTextArea.setText(ch1Text.west[1]
 					+ "\nYou encounter a " + monster.name + "!");
 			
+			helper.enabler(2);
 			helper.setChoiceText("Fight", "Run");
 			helper.setNextPosition("fight", "crossRoad");
 		}
@@ -293,14 +303,17 @@ public class Story {
 		
 		switch (weaponCounter) {
 		case 0: 
+			helper.enabler(2);
 			helper.setChoiceText("Stab", "Run");
 			helper.setNextPosition("playerAttack", "crossRoad");
 			break;
 		case 1:
+			helper.enabler(2);
 			helper.setChoiceText("Slash", "Run");
 			helper.setNextPosition("playerAttack", "crossRoad");
 			break;
 		case 2:
+			helper.enabler(3);
 			helper.setChoiceText("Cleave", "Smite", "Run");
 			helper.setNextPosition("playerAttack", "playerAttack", "crossRoad");
 			tooltips.showSkillCD(ui.choice2, smiteCD);
@@ -329,6 +342,7 @@ public class Story {
 	
 	
 	public void surrenderDIE() {
+		helper.enabler(1);
 		if (apologize) {
 			ui.mainTextArea.setText(ch2Text.apologize[0]);
 			player.hp = 0;
@@ -361,6 +375,7 @@ public class Story {
 				+ playerDamage + " damage!\n\n"
 				+ monster.name + " HP: " + monster.hp);
 		
+		helper.enabler(1);
 		helper.setChoiceText(">");
 		if (monster.hp >= 1) {
 			helper.setNextPosition("monsterAttack");
@@ -379,9 +394,11 @@ public class Story {
 				+ monster.name + " HP: " + monster.hp);
 		
 		if (player.hp >= 1) {
+			helper.enabler(2);
 			helper.setChoiceText("Attack", "Run");
 			helper.setNextPosition("playerAttack", "crossRoad");
 		} else if (player.hp <= 0) {
+			helper.enabler(1);
 			helper.setChoiceText("Die");
 			helper.setNextPosition("lose");
 		}
@@ -393,7 +410,8 @@ public class Story {
 				+ "\n\n(You obtained Silver Ring, you scummy, \ngrave-robbing bastard.)");
 		monster = null;
 		
-		helper.setChoiceText("Go East");
+		helper.enabler(1);
+		helper.setChoiceText("Go Back");
 		helper.setNextPosition("crossRoad");
 	}
 	
@@ -407,6 +425,7 @@ public class Story {
 			ui.mainTextArea.setText(monster.surrenderMessage);
 		}
 		
+		helper.enabler(1);
 		helper.setChoiceText("Title Screen");
 		helper.setNextPosition("returnTitle");
 	}
@@ -423,6 +442,7 @@ public class Story {
 				+ "\nthat pesters the town folk about littering. "
 				+ "\nWelcome, fellow nature hater!");
 		
+		helper.enabler(1);
 		helper.setChoiceText(">");
 		helper.setNextPosition("enterTown");
 	}
@@ -441,6 +461,7 @@ public class Story {
 		ui.mainTextArea.setText(ch2Text.enteringTown[ch2Text.enterTownCounter]);
 		ch2Text.enterTownCounter++;
 		
+		helper.enabler(1);
 		helper.setChoiceText(">");
 		helper.setNextPosition("crowdGathers");
 	}
@@ -450,6 +471,7 @@ public class Story {
 			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
 			ch2Text.crowdGatherCounter++;
 			
+			helper.enabler(1);
 			helper.setChoiceText(">");
 			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
@@ -458,6 +480,7 @@ public class Story {
 			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
 			ch2Text.crowdGatherCounter++;
 			
+			helper.enabler(1);
 			helper.setChoiceText(">");
 			helper.setNextPosition("crowdGathers");
 			crowdCounter++;
@@ -467,6 +490,7 @@ public class Story {
 			ch2Text.crowdGatherCounter++;
 			bigGuyCounter = 0;
 			
+			helper.enabler(3);
 			helper.setChoiceText("Hunchback", "Big Oaf", "Kindergarten-er");
 			helper.setNextPosition("bigGuy", "bigGuy", "bigGuy");	
 		}
@@ -477,6 +501,7 @@ public class Story {
 		if (bigGuyCounter == 0) {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			
+			helper.enabler(1);
 			helper.setChoiceText(">");
 			helper.setNextPosition("bigGuy");
 			bigGuyCounter++;
@@ -487,6 +512,7 @@ public class Story {
 			
 			bigGuyCounter++;
 			
+			helper.enabler(2);
 			helper.setChoiceText("Fight", "Surrender");
 			helper.setNextPosition("bigGuy", "surrenderDIE");
 		} else if (bigGuyCounter == 2) {
@@ -497,18 +523,21 @@ public class Story {
 			ui.weaponLabelName.setText(player.currentWeapon.getName());
 			tooltips.setWeaponLabelNameTTT();
 			
+			helper.enabler(2);
 			helper.setChoiceText("Sucker Punch", "Prepare");
 			helper.setNextPosition("bigGuy", "getReady");
 		} else if (bigGuyCounter == 3) {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
 			
+			helper.enabler(2);
 			helper.setChoiceText("Kick His Ass", "Prepare Counter");
 			helper.setNextPosition("bigGuy", "getReady");
 		} else {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
 			
+			helper.enabler(4);
 			helper.setChoiceText("Knock Out", "Knock Out", "Knock Out", "Knock Out");
 			helper.setNextPosition("KO", "KO", "KO", "KO");
 		}
@@ -523,6 +552,7 @@ public class Story {
 		if (bloodrage) {
 			ui.mainTextArea.setText(ch2Text.getReady[1]);
 			
+			helper.enabler(1);
 			helper.setChoiceText(">");
 			helper.setNextPosition("KO");
 		} else {
@@ -530,6 +560,7 @@ public class Story {
 			
 			bloodrage = true;
 			
+			helper.enabler(2);
 			helper.setChoiceText("Blood Rage", "Lie There");
 			helper.setNextPosition("bigGuy", "lieThere");
 		}
@@ -539,6 +570,7 @@ public class Story {
 	public void lieThere() {
 		ui.mainTextArea.setText(ch2Text.apologize[1]);
 		
+		helper.enabler(1);
 		helper.setChoiceText("Return to Title");
 		helper.setNextPosition("returnTitle");
 	}
@@ -547,11 +579,13 @@ public class Story {
 		if (bloodrage) {
 			ui.mainTextArea.setText(ch2Text.KO[0]);
 			
+			helper.enabler(1);
 			helper.setChoiceText("End");
 			helper.setNextPosition("End");
 		} else {
 			ui.mainTextArea.setText(ch2Text.KO[1]);
 			
+			helper.enabler(1);
 			helper.setChoiceText("End");
 			helper.setNextPosition("end");
 		}

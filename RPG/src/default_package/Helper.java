@@ -48,33 +48,33 @@ public class Helper {
 		game.nextPosition4 = d;
 	}
 	
-	public void greyout3() {
-		ui.choice2.setEnabled(false);
-		ui.choice3.setEnabled(false);
-		ui.choice4.setEnabled(false);
-	}
-
-	public void greyout2() {
-		ui.choice3.setEnabled(false);
-		ui.choice4.setEnabled(false);
-	}
-	
-	public void greyout1() {
-		ui.choice4.setEnabled(false);
-	}
-	
-	public void enable3() {
-		ui.choice2.setEnabled(true);
-		ui.choice3.setEnabled(true);
-		ui.choice4.setEnabled(true);
-	}
-	
-	public void enable2() {
-		ui.choice3.setEnabled(true);
-		ui.choice4.setEnabled(true);
-	}
-	
-	public void enable1() {
-		ui.choice4.setEnabled(true);
+	// precondition, i must be between values 1 and 4
+	public void enabler(int i) {
+		switch (i) {
+		case 1:
+			ui.choice1.setEnabled(true);
+			ui.choice2.setEnabled(false);
+			ui.choice3.setEnabled(false);
+			ui.choice4.setEnabled(false);
+			break;
+		case 2:
+			ui.choice1.setEnabled(true);
+			ui.choice2.setEnabled(true);
+			ui.choice3.setEnabled(false);
+			ui.choice4.setEnabled(false);
+			break;
+		case 3:
+			ui.choice1.setEnabled(true);
+			ui.choice2.setEnabled(true);
+			ui.choice3.setEnabled(true);
+			ui.choice4.setEnabled(false);
+			break;
+		case 4:
+			ui.choice1.setEnabled(true);
+			ui.choice2.setEnabled(true);
+			ui.choice3.setEnabled(true);
+			ui.choice4.setEnabled(true);
+			break;
+		}
 	}
 }
