@@ -60,7 +60,8 @@ public class Chapter2Bits {
 				"\"OOOOOO\", the crowd is reacting positively to"
 						+ "\nyour shots, surprisngly. The Elder is not having"
 						+ "\nit, and his face isn't holding up too well."
-						+ "\n\"WE HAVEN'T STARTED YET. STOP HITTING ME\"."
+						+ "\n\"WE HAVEN'T STARTED YET. STOP "
+						+ "\nHITTING ME.\""
 		};
 		apologize = new String[] {
 				"\"Um, that...I thought we had sta-\", you manage"
@@ -76,8 +77,8 @@ public class Chapter2Bits {
 						+ "\nnoticed anyways, since you're dead."
 		};
 		getReady = new String[] {
-				"\"No amount of foresight could have prepared you for"
-						+ "\nthe slap-of-god backhand from the Elder."
+				"\"No amount of foresight could have prepared you"
+						+ "\nfor the slap-of-god backhand from the Elder."
 						+ "\nYou're face down in the mud. People heckle you"
 						+ "\nand throw vegetables."
 						+ "The Elder bellows, \"Looks like the outsider"
@@ -96,10 +97,10 @@ public class Chapter2Bits {
 						+ "\n\"So, uh, I'll be off then.\""
 						+ "You here a quiet cough and a simulataneous "
 						+ "\n\"...dick\". You think that's a fair assessment.",
-				"The crowd is so amped up by the spectacle that they"
-						+ "\nget whipped into a frenzy and start fighting"
-						+ "\namongst themselves."
-						+ "You nope out of there so quick."
+				"The crowd is so amped up by the spectacle that "
+						+ "\nthey get whipped into a frenzy and start "
+						+ "\nfighting amongst themselves."
+						+ "\nYou nope out of there so quick."
 		};
 		end = "You sheepishly scurry out of the town and find"
 				+ "\nyourself back at the crossroads."

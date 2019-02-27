@@ -118,6 +118,8 @@ public class Story {
 		case "surrenderDIE": surrenderDIE(); break;
 		case "lieThere": lieThere(); break;
 		case "getReady": getReady(); break;
+		case "KO": KO(); break;
+		case "end": end(); break;
 		}
 	}
 	
@@ -501,8 +503,8 @@ public class Story {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
 			
-			helper.setChoiceText("Kick His Ass", "Get Ready");
-			helper.setNextPosition("bigGuy", "surrenderDIE");
+			helper.setChoiceText("Kick His Ass", "Prepare Counter");
+			helper.setNextPosition("bigGuy", "getReady");
 		} else {
 			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			bigGuyCounter++;
@@ -551,7 +553,7 @@ public class Story {
 			ui.mainTextArea.setText(ch2Text.KO[1]);
 			
 			helper.setChoiceText("End");
-			helper.setNextPosition("End");
+			helper.setNextPosition("end");
 		}
 	}
 	
