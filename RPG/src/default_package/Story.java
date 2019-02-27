@@ -35,6 +35,7 @@ public class Story {
 	boolean talkedToGuard;
 	boolean hitGuard;
 	boolean seenCrossRoad;
+	boolean apologize;
 	int talkedToGuardCounter;
 	int attackedGuardCounter;
 	int townGateCounter;
@@ -71,6 +72,7 @@ public class Story {
 		talkedToGuard = false;
 		hitGuard = false;
 		seenCrossRoad = false;
+		apologize = false;
 		
 		talkedToGuardCounter = 0;
 		attackedGuardCounter = 0;
@@ -108,6 +110,7 @@ public class Story {
 		case "crowdGathers": crowdGathers(); break;
 		case "enterTown": enterTown(); break;
 		case "bigGuy": bigGuy(); break;
+		case "surrenderDIE": surrenderDIE(); break;
 		}
 	}
 	
@@ -316,8 +319,22 @@ public class Story {
 	}
 	
 	
-	public void surrender() {
-		
+	public void surrenderDIE() {
+		if (apologize) {
+			ui.mainTextArea.setText(ch2Text.apologize[0]);
+			player.hp = 0;
+			ui.hpLabelNumber.setText(Integer.toString(player.hp));
+			
+			helper.setChoiceText("Title Screen");
+			helper.setNextPosition("returnTitle");
+		} else {
+			ui.mainTextArea.setText(monster.surrenderMessage);
+			player.hp = 0;
+			ui.hpLabelNumber.setText(Integer.toString(player.hp));
+			
+			helper.setChoiceText("Title Screen");
+			helper.setNextPosition("returnTitle");
+		}
 	}
 	
 	public void playerAttack() {
@@ -439,29 +456,57 @@ public class Story {
 		} else {
 			ui.mainTextArea.setText(ch2Text.crowdGathering[ch2Text.crowdGatherCounter]);
 			ch2Text.crowdGatherCounter++;
+			bigGuyCounter = 0;
 			
 			helper.setChoiceText("Hunchback", "Big Oaf", "Kindergarten-er");
 			helper.setNextPosition("bigGuy", "bigGuy", "bigGuy");	
 		}
 	}
 	
+	// couldn't get the switch case to work for some reason, went with if/else unfortunately
 	public void bigGuy() {
 		if (bigGuyCounter == 0) {
-			ui.mainTextArea.setText(ch2Text.bigGuy[ch2Text.bigGuyCounter]);
-			ch2Text.bigGuyCounter++;
+			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			
 			helper.setChoiceText(">");
 			helper.setNextPosition("bigGuy");
 			bigGuyCounter++;
-			
 		} else if (bigGuyCounter == 1) {
-			ui.mainTextArea.setText(ch2Text.bigGuy[ch2Text.bigGuyCounter]);
-			ch2Text.bigGuyCounter++;
+			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
 			
 			monster = new Elder();
 			
-			helper.setChoiceText("Fight!", "Surrender");
-			helper.setNextPosition("fight2", "lose");
+			bigGuyCounter++;
+			
+			helper.setChoiceText("Fight", "Surrender");
+			helper.setNextPosition("bigGuy", "surrenderDIE");
+		} else if (bigGuyCounter == 2) {
+			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
+			bigGuyCounter++;
+			
+			helper.setChoiceText("Sucker Punch", "Get Ready");
+			helper.setNextPosition("bigGuy", "surrenderDIE");
+		} else if (bigGuyCounter == 3) {
+			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
+			bigGuyCounter++;
+			
+			helper.setChoiceText("Kick His Ass", "Get Ready");
+			helper.setNextPosition("bigGuy", "surrenderDIE");
+		} else {
+			ui.mainTextArea.setText(ch2Text.bigGuy[bigGuyCounter]);
+			bigGuyCounter++;
+			
+			helper.setChoiceText("Knock Out", "Knock Out", "Knock Out", "Knock Out");
+			helper.setNextPosition("KO", "KO", "KO", "KO");
 		}
+		
+		// sucker punch
+		// 			-> sp again / apologize	
+		//				-> sp again / apologize				-> die
+		//						-> keep punching	
+	}
+	
+	public void KO() {
+		
 	}
 }

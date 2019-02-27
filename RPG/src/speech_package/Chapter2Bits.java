@@ -11,10 +11,12 @@ public class Chapter2Bits {
 	public String[] enteringTown;
 	public String[] crowdGathering;
 	public String[] bigGuy;
+	public String[] apologize;
+	public String[] KO;
 	
 	public int enterTownCounter;
 	public int crowdGatherCounter;
-	public int bigGuyCounter;
+	// got rid of bigGuyCounter b/c there is a similar thing like that already in Story.java
 	
 	public Chapter2Bits() {
 		enteringTown = new String[] {
@@ -41,13 +43,32 @@ public class Chapter2Bits {
 		bigGuy = new String[] {
 				"*THUD THUD THUD*"
 						+ "\nThe crowd falls silent and you witness a panic"
-						+ "\nset in on their pale faces Another figure enters"
+						+ "\nset in on their pale faces. Another figure enters"
 						+ "\nthe scene, but it towers over the rest.",
 				"\"This isn't some game. There will be no"
-						+ "\nchoosing today. It's my turn to fight.\""
+						+ "\nchoosing today. It's my turn to fight.\"",
+				"Take away his gear! We fight with fists."
+						+ "\n"
+						+ "\nThe crows cheers. You surmise it's been quite "
+						+ "\nsome time since they've witnessed a bloodsport.",
+				"Your punch lands a lot harder than you expected."
+						+ "\nEveryone goes quiet. The Elder is frozen in a "
+						+ "\na state of disbelief."
+						+ "\n\"What the...You're dead. You're so dead.\"",
+				"\"OOOOOO\", the crowd is reacting positively to"
+						+ "\nyour shots, surprisngly. The Elder is not having"
+						+ "\nit, and his face isn't holding up too well."
+						+ "\n\"WE HAVEN'T STARTED YET. STOP HITTING ME\"."
+		};
+		apologize = new String[] {
+				"\"Um, that...I thought we had sta-\", you manage"
+						+ "\nto blerp out before you're promptly mobbed"
+						+ "\nto death by the crowd and your opponent."
+						+ "\n"
+						+ "\nWe have no place for the dishonorable here.\","
+						+ "\nsays the Elder, standing over your corpse."
 		};
 		enterTownCounter = 0;
 		crowdGatherCounter = 0;
-		bigGuyCounter = 0;
 	}
 }
