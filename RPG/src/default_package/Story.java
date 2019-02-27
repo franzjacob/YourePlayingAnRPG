@@ -362,6 +362,7 @@ public class Story {
 	
 	public void playerAttack() {
 		ui.choice2.setEnabled(true); // b/c playerAttack() is one of next possible calls after smite button being possibly disabled
+		ui.choice2.setToolTipText(null); // so smite's TTT doesn't show up
 		
 		smiteCD--;
 		int playerDamage = player.currentWeapon.basicAttack();
@@ -409,7 +410,7 @@ public class Story {
 		ui.mainTextArea.setText("You've defeated the " + monster.name + "! It dropped a silver \nring!"
 				+ "\n\n(You obtained Silver Ring, you scummy, \ngrave-robbing bastard.)");
 		monster = null;
-		
+
 		helper.enabler(1);
 		helper.setChoiceText("Go Back");
 		helper.setNextPosition("crossRoad");
@@ -562,7 +563,7 @@ public class Story {
 			
 			helper.enabler(2);
 			helper.setChoiceText("Blood Rage", "Lie There");
-			helper.setNextPosition("bigGuy", "lieThere");
+			helper.setNextPosition("getReady", "lieThere");
 		}
 	}
 	
@@ -581,7 +582,7 @@ public class Story {
 			
 			helper.enabler(1);
 			helper.setChoiceText("End");
-			helper.setNextPosition("End");
+			helper.setNextPosition("end");
 		} else {
 			ui.mainTextArea.setText(ch2Text.KO[1]);
 			

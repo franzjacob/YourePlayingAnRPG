@@ -77,26 +77,23 @@ public class Chapter2Bits {
 						+ "\nnoticed anyways, since you're dead."
 		};
 		getReady = new String[] {
-				"\"No amount of foresight could have prepared you"
+				"No amount of foresight could have prepared you"
 						+ "\nfor the slap-of-god backhand from the Elder."
 						+ "\nYou're face down in the mud. People heckle you"
-						+ "\nand throw vegetables."
-						+ "The Elder bellows, \"Looks like the outsider"
+						+ "\nThe Elder bellows, \"Looks like the outsider"
 						+ "\ndoesn't have much in him.\"",
-				"This doesn't really constitute much as public shaming."
-						+ "\nStill, this snide remark hits you in your little"
-						+ "\nsensitive core and you black out in a fit of fury."
-						+ "\nThe last things you see before everything fades "
-						+ "\ninto obscurity are dark red stripes in the air,"
-						+ "\npainting the night sky like a macabre canvas."
+				"While that comment wasn't particularly scathing,"
+						+ "\nit rocks you to your very senstive, little core"
+						+ "\nand you black out in fit of fury. Before everything"
+						+ "\nfades into obscurity, you see are dark red stripes"
+						+ "\nin the air, painting the sky like a macabre canvas."
 		};
 		KO = new String[] {
-				"You wake, standing, to find the crowd quietly dispersing."
-						+ "\nThe Elder lies beneath you, in shreds."
+				"You wake, standing, to find the crowd quietly"
+						+ "\ndispersing. The Elder lies beneath you, in shreds."
 						+ "\nYou get the feeling that you should probably go"
-						+ "\n\"So, uh, I'll be off then.\""
-						+ "You here a quiet cough and a simulataneous "
-						+ "\n\"...dick\". You think that's a fair assessment.",
+						+ "\n"
+						+ "\n\"So, uh, I'll be off then...yeah...\"",
 				"The crowd is so amped up by the spectacle that "
 						+ "\nthey get whipped into a frenzy and start "
 						+ "\nfighting amongst themselves."
